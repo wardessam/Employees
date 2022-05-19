@@ -142,8 +142,102 @@ namespace Employess___BackEnd.Controllers
             }
             catch (Exception)
             {
-                return new JsonResult("unknown.png");
+                return new JsonResult("unknown.jpg");
             }
+        }
+        [Route("GetAllDepartmentsNames")]
+        [HttpGet]
+        public JsonResult GetAllDepartmentsNames()
+        {
+            string query = @"
+                 select dept_name from Department";
+            DataTable table = new DataTable();
+            string sqlDataSource = configuration.GetConnectionString("EmployeeAppCon");
+            SqlDataReader dataReader;
+            using (SqlConnection Con = new SqlConnection(sqlDataSource))
+            {
+                Con.Open();
+                using (SqlCommand command = new SqlCommand(query, Con))
+                {
+                    dataReader = command.ExecuteReader();
+                    table.Load(dataReader);
+
+                    dataReader.Close();
+                    Con.Close();
+                }
+            }
+            return new JsonResult(table);
+        }
+        [Route("GetFamilyMembers/{id}")]
+        [HttpGet]
+        public JsonResult GetFamilyMembers(int id)
+        {
+            string query = @"
+                 select * from Employee_Family where family_member_empID='"+id+"'";
+            DataTable table = new DataTable();
+            string sqlDataSource = configuration.GetConnectionString("EmployeeAppCon");
+            SqlDataReader dataReader;
+            using (SqlConnection Con = new SqlConnection(sqlDataSource))
+            {
+                Con.Open();
+                using (SqlCommand command = new SqlCommand(query, Con))
+                {
+                    dataReader = command.ExecuteReader();
+                    table.Load(dataReader);
+
+                    dataReader.Close();
+                    Con.Close();
+                }
+            }
+            return new JsonResult(table);
+        }
+
+        [Route("AddFamilyMember")]
+        [HttpPost]
+        public JsonResult AddFamilyMember(EmployeeFamilyMember member)
+        {
+            string query = @"
+                 insert into Employee_Family values ('"+member.familyMemberName+"','"+member.familyMemberRelation
+                 + "','" + member.familyMember_empID+"')";
+            DataTable table = new DataTable();
+            string sqlDataSource = configuration.GetConnectionString("EmployeeAppCon");
+            SqlDataReader dataReader;
+            using (SqlConnection Con = new SqlConnection(sqlDataSource))
+            {
+                Con.Open();
+                using (SqlCommand command = new SqlCommand(query, Con))
+                {
+                    dataReader = command.ExecuteReader();
+                    table.Load(dataReader);
+
+                    dataReader.Close();
+                    Con.Close();
+                }
+            }
+            return new JsonResult("Added Successfully!");
+        }
+        [Route("DeleteFamilyMember/{id}")]
+        [HttpDelete]
+        public JsonResult DeleteFamilyMember(int id)
+        {
+            string query = @"
+                 delete from Employee_Family where family_member_id ='"+id+"'";
+            DataTable table = new DataTable();
+            string sqlDataSource = configuration.GetConnectionString("EmployeeAppCon");
+            SqlDataReader dataReader;
+            using (SqlConnection Con = new SqlConnection(sqlDataSource))
+            {
+                Con.Open();
+                using (SqlCommand command = new SqlCommand(query, Con))
+                {
+                    dataReader = command.ExecuteReader();
+                    table.Load(dataReader);
+
+                    dataReader.Close();
+                    Con.Close();
+                }
+            }
+            return new JsonResult("Deleted Successfully!");
         }
     }
 }
