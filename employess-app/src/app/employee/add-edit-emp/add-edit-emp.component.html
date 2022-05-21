@@ -1,1 +1,59 @@
-<p>add-edit-emp works!</p>
+<div class="form-group row" style="width:60%">
+    <label class="col-sm-2 col-form-label">Employee First Name</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="emp_firstname"
+        placeholder="Enter Employee First Name">
+    </div>
+    
+    <label class="col-sm-2 col-form-label">Employee Last Name</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="emp_lastname"
+        placeholder="Enter Employee Last Name">
+    </div>
+    
+    <label class="col-sm-2 col-form-label">Employee Birthdate</label>
+    <div class="col-sm-10">
+        <input type="date" class="form-control" [(ngModel)]="emp_birthdate"
+        placeholder="Enter Employee Birtdate">
+    </div>
+
+    <label class="col-sm-2 col-form-label">Employee Department Name</label>
+    <div class="col-sm-10">
+        <select class="form-control" [(ngModel)] = "emp_dept_id">
+            <option>--SELECT--</option>
+            <option *ngFor="let depName of departments">
+                {{depName.dept_name}}
+            </option>
+        </select>
+        
+    </div>
+
+    <label class="col-sm-2 col-form-label">Employee Address</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="emp_address"
+        placeholder="Enter Employee Address">
+    </div>
+
+    <label class="col-sm-2 col-form-label">Employee Mobile</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="emp_mobile"
+        placeholder="Enter Employee Mobile">
+    </div>
+    
+    <label class="col-sm-2 col-form-label">Employee Phone</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="emp_phone"
+        placeholder="Enter Employee Phone">
+    </div>
+</div>
+<div class="ml-3 bd-highlight" style="width:40%">
+    <img [src] = emp_photo_path height="250px;" width="200px;">
+    <input type="file" (change)="uploadPhoto($event)" class="mt-2"/>
+</div>
+    
+    
+    <button (click)="addEmployee()" 
+    *ngIf="emp.emp_id==0" class="btn btn-primary">Add</button>
+    <button (click)="updateEmployee()" 
+    *ngIf="emp.emp_id!=0" class="btn btn-primary">Update</button>
+    

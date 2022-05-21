@@ -1,1 +1,28 @@
-<p>report1-emp works!</p>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Employee Photo</th>
+                <th>Employee Full Name</th>
+                <th>Employee Age</th>
+                <th>Employee Mobile</th>
+                <th>Employee Department</th>
+            </tr>
+        </thead>
+            <tbody>
+                <tr *ngFor="let dataItem of Employees">
+                    <td>{{dataItem.emp_photo_filename}}</td>  
+                    <td>{{dataItem.emp_firstname}} {{dataItem.emp_lastname}}</td>
+                    <td>{{dataItem.emp_age}}</td>
+                    <td>{{dataItem.emp_mobile}}</td>
+                    <td>{{dataItem.emp_dept_id}}</td>
+                     
+                      
+                
+                </tr>
+            </tbody>
+       
+    </table>
+    </div>
+    
+

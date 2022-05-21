@@ -13,13 +13,13 @@ readonly Photo_URL = "https://localhost:7129/Photos";
     return this.http.get<any>(this.API_URL+'/department');
   }
   addDepartment(val:any){
-    return this.http.post(this.API_URL+'/Department',val)
+    return this.http.post(this.API_URL+'/department',val)
   }
   updateDepartment(val:any){
-    return this.http.put(this.API_URL+'/Department',val)
+    return this.http.put(this.API_URL+'/department',val)
   }
   deleteDepartment(val:any){
-    return this.http.delete(this.API_URL+'/Department/',val)
+    return this.http.delete(this.API_URL+'/department/'+val)
   }
   //Employee Methods
   getEmployees():Observable<any[]>{
@@ -32,7 +32,7 @@ readonly Photo_URL = "https://localhost:7129/Photos";
     return this.http.put(this.API_URL+'/Employee',val)
   }
   deleteEmployee(val:any){
-    return this.http.delete(this.API_URL+'/Employee/',val)
+    return this.http.delete(this.API_URL+'/Employee/'+val)
   }
   //Uploading Profile Picture
   uploadPhoto(val:any){
@@ -44,7 +44,7 @@ readonly Photo_URL = "https://localhost:7129/Photos";
   }
   //Getting Family Members
   getFamilyMembers(val:any){
-    return this.http.get(this.API_URL+'/Employee/GetFamilyMembers/',val);
+    return this.http.get(this.API_URL+'/Employee/GetFamilyMembers/'+val);
   }
   //Adding Family Member
   addFamilyMember(val:any){
@@ -52,6 +52,6 @@ readonly Photo_URL = "https://localhost:7129/Photos";
   }
   //Deleting Family Member
   deleteFamilyMember(val:any){
-    return this.http.delete(this.API_URL+'/Employee/DeleteFamilyMember/',val);
+    return this.http.delete(this.API_URL+'/Employee/DeleteFamilyMember/'+val);
   }
 }
