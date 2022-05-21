@@ -7,35 +7,36 @@ import { NgZone } from '@angular/core';
   styleUrls: ['./add-edit-dep.component.css']
 })
 export class AddEditDepComponent implements OnInit {
-  @Input() dept:any;
+  @Input() dept;
   dept_id:string;
   dept_name:string;
   constructor(private service:SharedService) {}
   
   ngOnInit(): void {
-    
+    setTimeout(() => {
     this.dept_id =this.dept.dept_id;
-    this.dept_name=this.dept.dept_name;
-  
+    this.dept_name=this.dept.dept_name; 
+    });
+    
   }
+  
  addDepartment(){
-  // alert("Entered");
   var val = {
            departmentName:this.dept_name
           };
+         
   this.service.addDepartment(val).subscribe(res=>{
     alert(res.toString());
   });
  }
  updateDepartment(){
-  //alert(this.dept.dept_name);
- 
   var val = {
     departmentID:this.dept.dept_id,
-    departmentName:this.dept_name
+    departmentName:this.dept.dept_name
    };
 this.service.updateDepartment(val).subscribe(res=>{
 alert(res.toString());
 });
+
  }
 }

@@ -13,7 +13,7 @@ export class ShowDelDepComponent implements OnInit {
   Departments:any=[];
   formModal:any;
   ModalTitle:string;
-  dept:any;
+  dept:any={};
   ngOnInit(): void {
     this.refreshDeps();
     this.formModal = new window.bootstrap.Modal(
@@ -26,14 +26,16 @@ export class ShowDelDepComponent implements OnInit {
    if(confirm("Are you Sure?")){
      this.service.deleteDepartment(item.dept_id).subscribe(data=>{
       alert(data.toString());
-     })
-     this.refreshDeps(); 
+      setTimeout(() => {
+        this.refreshDeps(); 
+      }); 
+    })
    }
+   
   }
-  editDep(item:any){
+  editDep(item){
   this.dept=item;
   this.ModalTitle = "Edit Department"
-  
   this.formModal.show();
   
   }
@@ -56,5 +58,6 @@ export class ShowDelDepComponent implements OnInit {
     this.service.getDepartments().subscribe(data=>{
       this.Departments = data;
     })
+   
   }
 }
