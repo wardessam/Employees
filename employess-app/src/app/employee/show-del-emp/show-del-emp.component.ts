@@ -12,7 +12,6 @@ export class ShowDelEmpComponent implements OnInit {
 
   Employees:any=[];
   formModal:any;
-  
   ModalTitle:string;
   emp:any={};
   birthdateFilter_start:string="";
@@ -61,8 +60,7 @@ export class ShowDelEmpComponent implements OnInit {
       emp_phone:"",
       emp_dept_id:"",
       emp_dept_name:"",
-      emp_photo_filename:"unknown.jpg",
-      emp_photo_path:this.service.Photo_URL + "unknown.jpg",
+      emp_photo_filename:this.service.Photo_URL+"unknown.jpg",
       emp_age:""
      }
      

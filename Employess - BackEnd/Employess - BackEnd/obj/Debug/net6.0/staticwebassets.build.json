@@ -1,11 +1,37 @@
 {
   "Version": 1,
-  "Hash": "4SOLT2LYBFWwmzbZgoG0g0urVEfeigCjAmuCssL9ogU=",
+  "Hash": "Ullfn/I/VaHR0zn5t0kpG44ZSJW8Tywjj3U0pUCzmPQ=",
   "Source": "Employess - BackEnd",
   "BasePath": "_content/Employess - BackEnd",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "Employess - BackEnd\\wwwroot",
+      "Source": "Employess - BackEnd",
+      "ContentRoot": "C:\\Users\\hp\\OneDrive\\Desktop\\EJADA TASK\\Employess - BackEnd\\Employess - BackEnd\\wwwroot\\",
+      "BasePath": "_content/Employess - BackEnd",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\hp\\OneDrive\\Desktop\\EJADA TASK\\Employess - BackEnd\\Employess - BackEnd\\wwwroot\\Photos\\1.png",
+      "SourceId": "Employess - BackEnd",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hp\\OneDrive\\Desktop\\EJADA TASK\\Employess - BackEnd\\Employess - BackEnd\\wwwroot\\",
+      "BasePath": "_content/Employess - BackEnd",
+      "RelativePath": "Photos/1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Photos\\1.png"
+    }
+  ]
 }

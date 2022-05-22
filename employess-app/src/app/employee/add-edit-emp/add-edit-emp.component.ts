@@ -76,7 +76,6 @@ export class AddEditEmpComponent implements OnInit {
    // alert(this.emp.emp_dept_id);
   }
    updateEmployee(){
-    
     var val = {
       employeeID:this.emp.emp_id,
       employee_firstname : this.emp.emp_firstname,
@@ -105,8 +104,8 @@ export class AddEditEmpComponent implements OnInit {
       const formData: FormData = new FormData();
       formData.append('uploadedFile',file,file.name);
       this.service.uploadPhoto(formData).subscribe(data=>{
-        this.emp.emp_photo_filename = data.toString();
-        this.emp.emp_photo_path = this.service.Photo_URL + this.emp.emp_photo_filename;
+        this.emp.emp_photo_filename = this.service.Photo_URL+data.toString();
+        alert(this.emp.emp_photo_filename);
         
       })
    }

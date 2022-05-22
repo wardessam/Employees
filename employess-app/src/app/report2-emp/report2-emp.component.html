@@ -51,7 +51,7 @@ aria-labelledby="familyModalLabel" aria-hidden="true">
         </thead>
             <tbody>
                 <tr *ngFor="let dataItem of EmployeeFullList">
-                    <td>{{dataItem.emp_photo_filename}}</td>  
+                    <td><img height="100px;" width="100px;" src={{dataItem.emp_photo_filename}}></td>  
                     <td>{{dataItem.emp_firstname}} {{dataItem.emp_lastname}}</td>
                     <td>{{dataItem.emp_age}}</td>
                     <td>

@@ -132,7 +132,7 @@ namespace Employess___BackEnd.Controllers
                 var httpRequest = Request.Form;
                 var postedFile = httpRequest.Files[0];
                 string filename = postedFile.FileName;
-                var physcialPath = webHostEnvironment.ContentRootPath + "/Photos/" + filename;
+                var physcialPath = webHostEnvironment.ContentRootPath + "/wwwroot/Photos/" + filename;
                 
                 using(var stream = new FileStream(physcialPath, FileMode.Create))
                 {
