@@ -14,7 +14,8 @@
     <label class="col-sm-2 col-form-label">Employee Birthdate</label>
     <div class="col-sm-10">
         <input type="date" class="form-control" [(ngModel)]="emp.emp_birthdate"
-        placeholder="Enter Employee Birtdate">
+        placeholder="Enter Employee Birtdate"
+        (change)="calculateAge()">
     </div>
 
     <label class="col-sm-2 col-form-label">Employee Department Name</label>
@@ -38,13 +39,14 @@
     <label class="col-sm-2 col-form-label">Employee Mobile</label>
     <div class="col-sm-10">
         <input type="text" class="form-control" [(ngModel)]="emp.emp_mobile"
-        placeholder="Enter Employee Mobile">
+        placeholder="Enter Employee Mobile"
+        (change)="validateMobileNumber">
     </div>
     
     <label class="col-sm-2 col-form-label">Employee Phone</label>
     <div class="col-sm-10">
         <input type="text" class="form-control" 
-        ng-pattern="^((\\+91-?)|0)?[0-9]{10}$"
+        (change)="validatePhoneNumber"
         [(ngModel)]="emp.emp_phone"
         placeholder="Enter Employee Phone">
     </div>

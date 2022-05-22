@@ -30,20 +30,29 @@
       </div>
       
     <div class="container">
+      <div class="d-flex justify-content-center" style="margin-top:10px ; margin-bottom: 20px;">
+          <div class="col-2">
+        <label class="form-label" style="margin-top:20px ;"><b>BirthDate Filter</b></label>
+      </div>
+        <div class="col-2">
+        <label class="form-label">Start Date
+          <input type="date" placeholder="Start Date" [(ngModel)]="birthdateFilter_start">
+        </label>
+        </div>
+      <div class="col-2">
+        <label class="form-label">End Date
+          <input type="date" placeholder="End Date" [(ngModel)]="birthdateFilter_end">
+        </label>
+      </div>
+        <div class="col-2">
+        <button type="button" class="btn btn-secondary" style="margin-top:20px;"
+        data-backdrop="static" data-keyboard="false"
+        (click)="filter()">Filter</button></div>
+  </div>
     <table class="table table-striped">
+      
         <thead>
-          <tr>
-            <th>
-              <label class="col-form-label">BirthDate Filter</label>
-            </th>
-            <th>
-              <label class="col-6 col-form-label">Start Date</label>
-              <input type="date" placeholder="Start Date">
-            </th>
-            <th>
-              <label class="col-6 col-form-label">End Date</label>
-              <input type="date" placeholder="End Date"></th>
-          </tr>
+         
             <tr>
                 <th>Employee ID</th>
                 <th>Employee First Name</th>

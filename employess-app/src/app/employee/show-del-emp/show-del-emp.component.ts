@@ -15,7 +15,8 @@ export class ShowDelEmpComponent implements OnInit {
   
   ModalTitle:string;
   emp:any={};
-  birthdateFilter:string="";
+  birthdateFilter_start:string="";
+  birthdateFilter_end:string="";
   employeesWithoutFilter:any=[];
   
   ngOnInit(): void {
@@ -82,9 +83,17 @@ export class ShowDelEmpComponent implements OnInit {
    }
    
    filter(){
-     var birthdF = this.birthdateFilter;
-     this.Employees = this.employeesWithoutFilter.filter(function(el){
-
-     })
+     if(this.birthdateFilter_start&&this.birthdateFilter_end){
+     var start = new Date(this.birthdateFilter_start);
+     var end = new Date(this.birthdateFilter_end);
+    // alert(start);
+    // alert(end);
+     this.Employees = this.employeesWithoutFilter.filter( el =>
+       new Date(el.emp_birthdate) >= start && new Date(el.emp_birthdate) <= end);
+     }
+     else{
+       alert("Please Enter Start & End Dates to filter Properly!");
+     }
+    
    }
 }

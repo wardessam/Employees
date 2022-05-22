@@ -27,9 +27,32 @@ export class AddEditEmpComponent implements OnInit {
   calculateAge(){
     this.year = Number(this.emp.emp_birthdate.substring(0,4));
     let date =  new Date().getFullYear();
-    this.emp.emp_age = (date - this.year).toString();
+    let age = date - this.year;
     //alert(this.emp.emp_age);
-    return this.emp.emp_age;
+    if( age <18){
+      alert("Age should be above 18");
+    }
+    else{
+      this.emp.emp_age = age.toString();
+    }
+  }
+  validatePhoneNumber(input_str) {
+    var re = /^\(?(\d{4})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+    if (re.test(input_str)){
+       this.emp.emp_phone=input_str;
+    }
+    else{
+      alert("Wrong Number Format!")
+    }
+  }
+  validateMobileNumber(input_str) {
+    var re = /^\(?(\d{4})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+    if (re.test(input_str)){
+       this.emp.emp_mobile=input_str;
+    }
+    else{
+      alert("Wrong Number Format!")
+    }
   }
   addEmployee(){
     var val = {
@@ -41,7 +64,7 @@ export class AddEditEmpComponent implements OnInit {
              employee_mobile : this.emp.emp_mobile,
              employee_photo : this.emp.emp_photo_filename,
              employee_dept_id : this.emp.emp_dept_id,
-             employee_age : this.calculateAge(),
+             employee_age : this.emp.emp_age,
             };
     console.log(val);
     this.service.addEmployee(val).subscribe(res=>{
