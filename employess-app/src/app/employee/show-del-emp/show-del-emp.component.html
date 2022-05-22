@@ -28,44 +28,22 @@
           </div>
         </div>
       </div>
-      <!--Family Member Modal-->
-      <div class="modal fade" id="familyModal" tabindex="-1" role="dialog"
-      aria-labelledby="familyModalLabel" aria-hidden="true">
-       <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-         <div class="modal-content">
-           <div class="modal-header">
-             <h5 class="modal-title" id="familyModalLabel">Add Family Member</h5>
-             <button type="button" class="close" 
-             data-dismiss="modal" aria-label="Close"
-             (click)="closeClick()">
-               <span aria-hidden="true">&times;</span>
-             </button>
-           </div>
-           <div class="modal-body">
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Employee ID</label>
-                <div class="col-sm-10">{{emp.emp_id}}</div>
-                <label class="col-sm-2 col-form-label">Family Member Name</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control"
-                    placeholder="Enter Family Member Name">
-                </div>
-                <label class="col-sm-2 col-form-label">Family Member Relation</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control"
-                    placeholder="Enter Family Member Relation">
-                </div>
-                </div>
-                <button (click)="AddFamilyMember()" class="btn btn-primary">Add</button>
-                
-           </div>
-          
-         </div>
-       </div>
-     </div>
+      
     <div class="container">
     <table class="table table-striped">
         <thead>
+          <tr>
+            <th>
+              <label class="col-form-label">BirthDate Filter</label>
+            </th>
+            <th>
+              <label class="col-6 col-form-label">Start Date</label>
+              <input type="date" placeholder="Start Date">
+            </th>
+            <th>
+              <label class="col-6 col-form-label">End Date</label>
+              <input type="date" placeholder="End Date"></th>
+          </tr>
             <tr>
                 <th>Employee ID</th>
                 <th>Employee First Name</th>
@@ -78,7 +56,7 @@
                 <th>Employee Photo</th>
                 <th>Employee Age</th>
                 <th>Options</th>
-                <th>Add Family Member</th>
+                
             </tr>
         </thead>
             <tbody>
@@ -91,7 +69,7 @@
                       <td>{{dataItem.emp_phone}}</td>
                       <td>{{dataItem.emp_mobile}}</td>
                       <td>{{dataItem.emp_dept_id}}</td>
-                      <td>{{dataItem.emp_photo_path}}</td>
+                      <td>{{dataItem.emp_photo_filename}}</td>
                       <td>{{dataItem.emp_age}}</td>
                       <td>
                           <button type="button" class="btn btn-light mr-1"
@@ -109,13 +87,7 @@
                               </svg>
                           </button>
                       </td>
-                      <td><button type="button" class="btn btn-light mr-1"
-                        (click)="openFamilyModal(dataItem.emp_id)">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                          </svg>
-                      </button></td>
+                     
                 </tr>
             </tbody>
        

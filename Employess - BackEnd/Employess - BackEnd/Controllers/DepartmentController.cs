@@ -108,6 +108,51 @@ namespace Employess___BackEnd.Controllers
             }
             return new JsonResult("Deleted Successfully!");
         }
+        [Route("GetDeptName/{id}")]
+        [HttpGet]
+        public JsonResult getDeptName(int id)
+        {
+            string query = @"
+                 select dept_name from Department where dept_id='"+id+"'";
+            DataTable table = new DataTable();
+            string sqlDataSource = configuration.GetConnectionString("EmployeeAppCon");
+            SqlDataReader dataReader;
+            using (SqlConnection Con = new SqlConnection(sqlDataSource))
+            {
+                Con.Open();
+                using (SqlCommand command = new SqlCommand(query, Con))
+                {
+                    dataReader = command.ExecuteReader();
+                    table.Load(dataReader);
 
+                    dataReader.Close();
+                    Con.Close();
+                }
+            }
+            return new JsonResult(table);
+        }
+        [Route("GetDeptID")]
+        [HttpGet]
+        public JsonResult getDeptID(Department d)
+        {
+            string query = @"
+                 select dept_id from Department where dept_name='" + d.departmentName + "'";
+            DataTable table = new DataTable();
+            string sqlDataSource = configuration.GetConnectionString("EmployeeAppCon");
+            SqlDataReader dataReader;
+            using (SqlConnection Con = new SqlConnection(sqlDataSource))
+            {
+                Con.Open();
+                using (SqlCommand command = new SqlCommand(query, Con))
+                {
+                    dataReader = command.ExecuteReader();
+                    table.Load(dataReader);
+
+                    dataReader.Close();
+                    Con.Close();
+                }
+            }
+            return new JsonResult(table);
+        }
     }
 }

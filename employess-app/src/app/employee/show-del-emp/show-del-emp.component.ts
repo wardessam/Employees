@@ -8,37 +8,44 @@ declare var window:any;
   styleUrls: ['./show-del-emp.component.css']
 })
 export class ShowDelEmpComponent implements OnInit {
-
-  constructor(private service:SharedService) { }
+ constructor(private service:SharedService) { }
 
   Employees:any=[];
   formModal:any;
-  familyModal:any;
+  
   ModalTitle:string;
-  emp:any;
+  emp:any={};
+  birthdateFilter:string="";
+  employeesWithoutFilter:any=[];
+  
   ngOnInit(): void {
     this.refreshEmps();
     this.formModal = new window.bootstrap.Modal(
       document.getElementById("exampleModal")
     )
-    this.familyModal = new window.bootstrap.Modal(
-      document.getElementById("familyModal")
-    )
+    
    
   }
   deleteEmp(item:any){
     if(confirm("Are you Sure?")){
-
+    this.service.deleteFamilyMembers(item.emp_id).subscribe(data=>{
+     // alert("entered");
+      //alert(data.toString());
       this.service.deleteEmployee(item.emp_id).subscribe(data=>{
-       alert(data.toString());
-      })
-      this.refreshEmps(); 
+        alert(data.toString());
+        setTimeout(() => {
+         this.refreshEmps(); 
+        })
+       })
+    })
+   
+      
+      
     }
    }
    editEmp(item:any){
    this.emp=item;
    this.ModalTitle = "Edit Employee"
-   
    this.formModal.show();
    
    }
@@ -52,7 +59,9 @@ export class ShowDelEmpComponent implements OnInit {
       emp_mobile:"",
       emp_phone:"",
       emp_dept_id:"",
-      emp_photo:"unknown.jpg",
+      emp_dept_name:"",
+      emp_photo_filename:"unknown.jpg",
+      emp_photo_path:this.service.Photo_URL + "unknown.jpg",
       emp_age:""
      }
      
@@ -63,18 +72,19 @@ export class ShowDelEmpComponent implements OnInit {
    }
    closeClick(){
      this.formModal.hide();
-     this.familyModal.hide();
      this.refreshEmps();
    }
    refreshEmps(){
      this.service.getEmployees().subscribe(data=>{
        this.Employees = data;
+       this.employeesWithoutFilter = data;
      })
    }
-   openFamilyModal(emp_id:any){
-     this.familyModal.show();
-   }
-   AddFamilyMember(){
+   
+   filter(){
+     var birthdF = this.birthdateFilter;
+     this.Employees = this.employeesWithoutFilter.filter(function(el){
 
+     })
    }
 }

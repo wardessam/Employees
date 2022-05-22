@@ -36,6 +36,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+app.UseStaticFiles();
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Photos")),

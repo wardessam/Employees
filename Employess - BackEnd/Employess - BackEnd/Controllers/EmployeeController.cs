@@ -21,7 +21,8 @@ namespace Employess___BackEnd.Controllers
         public JsonResult Get()
         {
             string query = @"
-                 select * from Employee";
+                 select emp_id,emp_firstname,emp_lastname, convert(varchar(10),emp_birthdate,120) as emp_birthdate,
+                  emp_address,emp_phone,emp_mobile,emp_photo_filename,emp_dept_id,emp_age from Employee";
             DataTable table = new DataTable();
             string sqlDataSource = configuration.GetConnectionString("EmployeeAppCon");
             SqlDataReader dataReader;
@@ -216,12 +217,37 @@ namespace Employess___BackEnd.Controllers
             }
             return new JsonResult("Added Successfully!");
         }
+        //Delete all family members to specific employee
+        [Route("DeleteFamilyMembers/{id}")]
+        [HttpDelete]
+        public JsonResult DeleteFamilyMembers(int id)
+        {
+            string query = @"
+                 delete from Employee_Family where family_member_empID ='"+id+"'";
+            DataTable table = new DataTable();
+            string sqlDataSource = configuration.GetConnectionString("EmployeeAppCon");
+            SqlDataReader dataReader;
+            using (SqlConnection Con = new SqlConnection(sqlDataSource))
+            {
+                Con.Open();
+                using (SqlCommand command = new SqlCommand(query, Con))
+                {
+                    dataReader = command.ExecuteReader();
+                    table.Load(dataReader);
+
+                    dataReader.Close();
+                    Con.Close();
+                }
+            }
+            return new JsonResult("Deleted Successfully!");
+        }
+        //delete specific family member
         [Route("DeleteFamilyMember/{id}")]
         [HttpDelete]
         public JsonResult DeleteFamilyMember(int id)
         {
             string query = @"
-                 delete from Employee_Family where family_member_id ='"+id+"'";
+                 delete from Employee_Family where family_member_id ='" + id + "'";
             DataTable table = new DataTable();
             string sqlDataSource = configuration.GetConnectionString("EmployeeAppCon");
             SqlDataReader dataReader;
